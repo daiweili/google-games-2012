@@ -9,10 +9,13 @@ def read_float():
 def read_line():
     return sys.stdin.readline()
 
-def read_lines(n=1):
+def read_lines(n=1, func=None):
+    """Reads n lines. Also applies the argument func to each line."""
     result = []
     for line in xrange(n):
         result.append(sys.stdin.readline())
+    if func is not None:
+        result = [func(x) for x in result]
     return result
 
 def read_list(func=None):
@@ -31,4 +34,4 @@ def read_list(func=None):
     return elems
 
 if __name__ == '__main__':
-    print read_list(int)
+    print read_lines(5, int)
