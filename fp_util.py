@@ -18,15 +18,17 @@ def read_lines(n=1, func=None):
         result = [func(x) for x in result]
     return result
 
-def read_list(func=None):
+def read_list(func=None, num_el=True):
     """Reads lists in the form:
 
     [number of elements]
     [element1] [element2] ... [elementn]
 
     Also applies the argument func to each element.
+    If num_el is False, it skips the first line.
     """
-    num = read_int()
+    if num_el:
+        num = read_int()
     elems = read_line().split()
 
     if func is not None:
