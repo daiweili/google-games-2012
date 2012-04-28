@@ -18,7 +18,7 @@ def read_lines(n=1, func=None):
         result = [func(x) for x in result]
     return result
 
-def read_list(func=None, num_el=True):
+def read_list(func=None, num_el=True, charString=False):
     """Reads lists in the form:
 
     [number of elements]
@@ -29,10 +29,16 @@ def read_list(func=None, num_el=True):
     """
     if num_el:
         num = read_int()
-    elems = read_line().split()
+    
+    if not charString:
+        elems = read_line().split()
+    else:
+        elems = read_line().rstrip()
 
     if func is not None:
         elems = [func(x) for x in elems]
+    elif charString:
+        elems = [x for x in elems]
     return elems
 
 if __name__ == '__main__':
